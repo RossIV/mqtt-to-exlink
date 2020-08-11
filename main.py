@@ -29,7 +29,7 @@ def main():
     client.connect(config.get('mqtt', 'brokerIp'), int(config.get('mqtt', 'brokerPort')))
     client.subscribe("{}/command".format(config.get('mqtt', 'baseTopic')))
     client.on_message = onMessage
-    client.loop_start()
+    client.loop_forever()
 
 
 if __name__ == '__main__':
