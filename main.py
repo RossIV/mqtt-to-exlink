@@ -28,7 +28,7 @@ def main():
     client = mqtt.Client(config.get('mqtt', 'clientId'))
     client.connect(config.get('mqtt', 'brokerIp'), int(config.get('mqtt', 'brokerPort')))
     client.subscribe("{}/command".format(config.get('mqtt', 'baseTopic')))
-    client.on_message = onMessage()
+    client.on_message = onMessage
     client.loop_start()
 
 
