@@ -12,7 +12,7 @@ commands = None
 def onMessage(client, userdata, message):
     decodedMessage = message.payload.decode("utf-8")
     if decodedMessage in commands:
-        tvSerial.write(commands[decodedMessage].encode('latin1'))
+        tvSerial.write(commands[decodedMessage])
 
 
 def main():
