@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
 import configparser
-import json
 import paho.mqtt.client as mqtt
 import serial
+import ast
 
 tvSerial = None
 commands = None
@@ -22,8 +22,11 @@ def main():
     config.read('config.ini')
 
     # Load serial commands from file
-    commandsFile = open('commands.json', )
-    commands = json.load(commandsFile)
+    commandsFile = open('commands.txt', )
+    file = open("commands.txt", "r")
+    contents = file.read()
+    commands = ast.literal_eval(contents)
+    file.close()
 
     # Initialize serial
     tvSerial = serial.Serial(config.get('tv', 'serialPort'), config.get('tv', 'baudRate'))
