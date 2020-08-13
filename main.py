@@ -22,7 +22,6 @@ def main():
     config.read('config.ini')
 
     # Load serial commands from file
-    commandsFile = open('commands.txt', )
     file = open("commands.txt", "r")
     contents = file.read()
     commands = ast.literal_eval(contents)
