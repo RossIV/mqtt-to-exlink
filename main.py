@@ -5,14 +5,18 @@ import json
 import paho.mqtt.client as mqtt
 import serial
 
+tvSerial = None
+commands = None
+
 
 def onMessage(client, userdata, message):
-    print(client)
-    print(userdata)
-    print(message)
+    decodedMessage = message.payload.decode("utf-8")
+    if decodedMessage in commands:
+        tvSerial.write(commands[decodedMessage].encode('latin1'))
 
 
 def main():
+    global tvSerial, commands
     # Load configuration
     config = configparser.ConfigParser()
     config.read('config.ini')
