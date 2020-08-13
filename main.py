@@ -26,6 +26,7 @@ def main():
 
     # Initialize MQTT
     client = mqtt.Client(config.get('mqtt', 'clientId'))
+    client.username_pw_set(config.get('mqtt', 'username'), config.get('mqtt', 'password'))
     client.connect(config.get('mqtt', 'brokerIp'), int(config.get('mqtt', 'brokerPort')))
     client.subscribe("{}/command".format(config.get('mqtt', 'baseTopic')))
     client.on_message = onMessage
